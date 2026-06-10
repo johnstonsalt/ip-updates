@@ -7,7 +7,7 @@ while 1:
     known = requests.get("https://raw.githubusercontent.com/johnstonalt/ip-updates/refs/heads/main/README.md").text.replace("\n", "").replace("# ", "")
 
     if actual != known:
-        print(f"New public IP address: {known} -> {actual}")
+        print(f"\nNew public IP address: {known} -> {actual}\n")
 
         with open("README.md", "w") as f:
             f.write(f"# {actual}")
