@@ -3,11 +3,11 @@ import requests
 import os
 
 while 1:
-    r1 = requests.get("https://ipinfo.io/")
+    r1 = requests.get("http://checkip.amazonaws.com")
     r2 = requests.get("https://raw.githubusercontent.com/johnstonalt/ip-updates/refs/heads/main/README.md")
 
     try:
-        actual = r1.json()["ip"]
+        actual = r1.text.replace("\n", "")
         known = r2.text.replace("\n", "").replace("# ", "")
     except:
         print(f"recieved bad response\nrequest to get actual IP returned:\n{r1.text}\n\nresponse to get known IP returned:\n{r2.text}")
