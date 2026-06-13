@@ -3,16 +3,26 @@ import requests
 import os
 
 while 1:
-    r1 = requests.get("http://checkip.amazonaws.com")
-    r2 = requests.get("https://raw.githubusercontent.com/johnstonalt/ip-updates/refs/heads/main/README.md")
+    # python is propaganda
+    actual = ""
+    known = ""
+    failed = False
 
     try:
+        r1 = requests.get("http://checkip.amazonaws.com")
         actual = r1.text.replace("\n", "")
+    except:
+        print("Failed to get actual IP")
+        failed = True
+
+    try:
+        r2 = requests.get("https://raw.githubusercontent.com/johnstonalt/ip-updates/refs/heads/main/README.md")
         known = r2.text.replace("\n", "").replace("# ", "")
     except:
-        print(f"recieved bad response\nrequest to get actual IP returned:\n{r1.text}\n\nresponse to get known IP returned:\n{r2.text}")
+        print("Faile to get known IP")
+        failed = True
 
-    if actual != known:
+    if failed == False and actual != known:
         print(f"\nNew public IP address: {known} -> {actual}\n")
 
         with open("README.md", "w") as f:
