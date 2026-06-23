@@ -3,7 +3,7 @@ import requests
 import os
 
 known = ""
-kr = requests.get("https://raw.githubusercontent.com/johnstonalt/ip-updates/refs/heads/main/README.md")
+kr = requests.get("https://raw.githubusercontent.com/johnstonsalt/ip-updates/refs/heads/main/README.md")
 known = kr.text.replace("\n", "").replace("# ", "")
 
 while 1:
